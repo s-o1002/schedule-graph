@@ -22,9 +22,6 @@
     }
 
     .ruler {
-      /* position: absolute; */
-      /* left: 50px; */
-      /* margin-left: 50px; */
       top: 0;
       width: 1440px;
       height: 50px;
@@ -125,10 +122,7 @@
     <div class="ruler-label" style="left: 1465px;">24:00</div>
     <div class="ruler-mark" style="left: 1490px;"></div>
   </div>
-  <!-- <div class="schedule" style="width: 100px; left: 100px;"></div> -->
   <div id="scheduleBox">
-    <!-- <div id="schedule1" class="schedule" style="width: 180px; left: 590px;"></div>
-    <div id="schedule2" class="schedule" style="width: 300px; left: 830px;"></div> -->
   </div>
   <div id="param">
     <fieldset id="selectedParam">
@@ -156,7 +150,7 @@
 
   <br>
   <div id="results">
-    <!-- saveボタンで最終を開始、終了ログでまとめられるようにしたい -->
+    <!-- saveボタンで最終を開始、終了ログでまとめられるようにしたい。以下ダミー -->
     <button>save</button>
     <ul>
       <li>hh:mm 開始</li>
@@ -196,12 +190,10 @@
       var end = document.getElementById("end");
 
       start.addEventListener("input", function (event) {
-        // console.log("開始時間が変更されました：" + event.target.value);
         selectedClassInstance.setStartTime(event.target.value);
       });
 
       end.addEventListener("input", function (event) {
-        // console.log("終了時間が変更されました：" + event.target.value);
         selectedClassInstance.setEndTime(event.target.value);
       });
 
@@ -433,6 +425,7 @@
         if(this.startWidth - minWidth > 0){
           this.schedule.style.width = `${this.startWidth - minWidth}px`;
           this.startWidth -= minWidth;
+        this.showParam(this.startWidth);
         }
       }
 
@@ -440,13 +433,11 @@
         if (this.startleft + this.startWidth + minWidth < 1490) {
           this.schedule.style.width = `${this.startWidth + minWidth}px`;
           this.startWidth += minWidth;
+        this.showParam(this.startWidth);
         }
       }
 
     }
-
-    // schedules.push(new scheduleClass("schedule1"));
-    // schedules.push(new scheduleClass("schedule2"));
 
     function isTime(str) {
       return str.match(/^([01]?[0-9]|2[0-3]):([0-5][0-9])$/) !== null;
@@ -465,9 +456,6 @@
       });
     }
 
-    /*
-    作成途中
-    */
     function focusNext() {
       if (schedules.length > 0) {
         let indexNum = schedules.indexOf(selectedClassInstance);
