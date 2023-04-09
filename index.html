@@ -199,31 +199,7 @@
 
       var addButton = document.getElementById("add");
       addButton.addEventListener("click", function (event) {
-        if (limitScheduleNum > schedules.length) {
-          newId += 1;
-
-          let newSchedule = document.createElement("div");
-          newSchedule.setAttribute("id", newId);
-          newSchedule.classList.add("schedule");
-
-          // スタイルを設定
-          newSchedule.style.width = "60px";
-          newSchedule.style.left = "110px";
-
-          // 追加する schedule 要素を scheduleBox に追加
-          const scheduleBox = document.getElementById("scheduleBox");
-          scheduleBox.appendChild(newSchedule);
-
-          schedules.push(new scheduleClass(newId));
-
-          selectedClassInstance = schedules[schedules.length-1];
-          highlightElement(schedules[schedules.length-1].schedule);
-          schedules[schedules.length-1].showParam(schedules[schedules.length-1].startWidth);
-        }
-
-        if (limitScheduleNum <= schedules.length) {
-          document.getElementById("add").disabled = true;
-        }
+        addEvent();
       });
 
       document.addEventListener("keydown", function (event) {
@@ -234,6 +210,8 @@
         } else if (event.shiftKey && event.key === "ArrowRight" && selectedClassInstance) {
           // console.log("Shift + 右矢印キーが同時に押されました。");
           selectedClassInstance.extendBack();
+        } else if (event.key === "n") {
+          addEvent();
         } else if (key === "ArrowLeft" && selectedClassInstance) {
           // 左キーが押されたときの処理
           // console.log("left");
@@ -422,10 +400,10 @@
       }
 
       shrinkBack() {
-        if(this.startWidth - minWidth > 0){
+        if (this.startWidth - minWidth > 0) {
           this.schedule.style.width = `${this.startWidth - minWidth}px`;
           this.startWidth -= minWidth;
-        this.showParam(this.startWidth);
+          this.showParam(this.startWidth);
         }
       }
 
@@ -433,7 +411,7 @@
         if (this.startleft + this.startWidth + minWidth < 1490) {
           this.schedule.style.width = `${this.startWidth + minWidth}px`;
           this.startWidth += minWidth;
-        this.showParam(this.startWidth);
+          this.showParam(this.startWidth);
         }
       }
 
@@ -467,6 +445,34 @@
         selectedClassInstance = schedules[indexNum];
         highlightElement(schedules[indexNum].schedule);
         schedules[indexNum].showParam(schedules[indexNum].startWidth);
+      }
+    }
+
+    function addEvent() {
+      if (limitScheduleNum > schedules.length) {
+        newId += 1;
+
+        let newSchedule = document.createElement("div");
+        newSchedule.setAttribute("id", newId);
+        newSchedule.classList.add("schedule");
+
+        // スタイルを設定
+        newSchedule.style.width = "60px";
+        newSchedule.style.left = "110px";
+
+        // 追加する schedule 要素を scheduleBox に追加
+        const scheduleBox = document.getElementById("scheduleBox");
+        scheduleBox.appendChild(newSchedule);
+
+        schedules.push(new scheduleClass(newId));
+
+        selectedClassInstance = schedules[schedules.length - 1];
+        highlightElement(schedules[schedules.length - 1].schedule);
+        schedules[schedules.length - 1].showParam(schedules[schedules.length - 1].startWidth);
+      }
+
+      if (limitScheduleNum <= schedules.length) {
+        document.getElementById("add").disabled = true;
       }
     }
 
