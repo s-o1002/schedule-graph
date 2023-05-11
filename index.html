@@ -62,7 +62,7 @@
       margin-left: 50px;
     }
 
-    #selectedParam {
+    #selectedParam,fieldset {
       width: 25%;
     }
   </style>
@@ -121,8 +121,8 @@
     <div class="ruler-mark" style="left: 1430px;"></div>
     <div class="ruler-label" style="left: 1465px;">24:00</div>
     <div class="ruler-mark" style="left: 1490px;"></div>
-  </div>
-  <div id="scheduleBox">
+    <div id="scheduleBox">
+    </div>
   </div>
   <div id="param">
     <fieldset id="selectedParam">
@@ -148,18 +148,23 @@
     <button id="add">Add</button>
   </div>
 
-  <br>
-  <div id="results">
-    <!-- saveボタンで最終を開始、終了ログでまとめられるようにしたい。以下ダミー -->
-    <button>save</button>
-    <ul>
-      <li>hh:mm 開始</li>
-      <li>hh:mm 終了</li>
-      <li>hh:mm 再開</li>
-      <li>hh:mm 終了</li>
-    </ul>
-  </div>
+  <fieldset>
+    <legend>合計時間</legend>
+    <div id="totalTime">
+      出勤時間：<br>
+      退勤時間：<br>
+      勤務時間：<br>
+      休憩時間：
+    </div>
+  </fieldset>
 
+  <br>
+  <button id="saveButton">save</button>
+  <fieldset>
+    <legend>打刻</legend>
+    <div id="results">
+    </div>
+  </fieldset>
   <script>
     const schedules = [];
     let newId = schedules.length;
@@ -202,26 +207,24 @@
         addEvent();
       });
 
+      var saveButton = document.getElementById("saveButton");
+      saveButton.addEventListener("click", function (event) {
+        save();
+      });
+
       document.addEventListener("keydown", function (event) {
         const key = event.key;
         if (event.shiftKey && event.key === "ArrowLeft" && selectedClassInstance) {
-          // console.log("Shift + 左矢印キーが同時に押されました。");
           selectedClassInstance.shrinkBack();
         } else if (event.shiftKey && event.key === "ArrowRight" && selectedClassInstance) {
-          // console.log("Shift + 右矢印キーが同時に押されました。");
           selectedClassInstance.extendBack();
         } else if (event.key === "n") {
           addEvent();
         } else if (key === "ArrowLeft" && selectedClassInstance) {
-          // 左キーが押されたときの処理
-          // console.log("left");
           selectedClassInstance.LeftArrow();
         } else if (key === "ArrowRight" && selectedClassInstance) {
-          // 右キーが押されたときの処理
-          // console.log("right");
           selectedClassInstance.RightArrow();
         } else if (key === 'Tab') {
-          // カスタム動作を行う
           if (selectedClassInstance && schedules.length > 1) {
             event.preventDefault();
             focusNext();
@@ -257,6 +260,7 @@
               this.schedule.style.cursor = 'grab';
             }
           }
+          save();
         });
         this.isDragging = false;
         this.isResizingLeft = false;
@@ -286,9 +290,7 @@
             this.startleft = parseInt(this.schedule.style.left);
             this.styleleft = parseInt(this.schedule.style.left);
             this.startWidth = this.schedule.clientWidth;
-            // console.log(this.startWidth);
             this.showParam(this.startWidth);
-            // console.log("down");
           }
         });
         this.schedule.addEventListener('click', (event) => {
@@ -307,15 +309,6 @@
               this.schedule.style.left = `${this.styleleft}px`;
               this.showParam(newWidth);
             }
-            // console.log("left");
-            // console.log("startleft:"+startleft);
-            // console.log("styleleft:"+styleleft);
-            // console.log("event.pageX:"+event.pageX);
-            // console.log("startX:"+startX);
-            // console.log("startWidth:"+startWidth);
-            // console.log("newWidth:"+newWidth);
-            // console.log("schedule.style.left:"+schedule.style.left);
-            // console.log("========================================");
           } else if (this.isResizingRight) {
             const newWidth = this.startWidth + event.pageX - this.startX;
             if (newWidth >= minWidth && event.pageX < window.innerWidth && this.startleft + newWidth < 1490 && newWidth % minWidth == 0) {
@@ -327,8 +320,6 @@
             const newLeft = this.startleft + event.pageX - this.startX;
             if (newLeft >= 50 && newLeft + this.startWidth < 1490 && (newLeft - 50) % minWidth == 0) {
               this.schedule.style.left = `${newLeft}px`;
-              // console.log("drag");
-              // console.log(newLeft);
               this.showParam(this.startWidth);
             }
           }
@@ -341,6 +332,7 @@
           this.startleft = parseInt(this.schedule.style.left);
           this.startWidth = this.schedule.clientWidth;
         });
+        save();
       }
 
       showParam(width) {
@@ -352,6 +344,7 @@
         this.endP.readOnly = false;
         width = parseInt(width);
         this.totalP.textContent = "長さ：" + Math.floor(width / 60) + ":" + (width % 60).toString().padStart(2, '0');
+        save();
       }
 
       setStartTime(value) {
@@ -426,6 +419,19 @@
       return hours * 60 + minutes;
     }
 
+    function convertLeftToTime(minutes) {
+      minutes -= 50;
+      const hours = Math.floor(minutes / 60);
+      const min = minutes % 60;
+      return `${String(hours).padStart(2, '0')}:${String(min).padStart(2, '0')}`;
+    }
+
+    function convertMinutesToTime(minutes){
+      const hours = Math.floor(minutes / 60);
+      const min = minutes % 60;
+      return `${String(hours).padStart(2, '0')}:${String(min).padStart(2, '0')}`;
+    }
+
     function findInstanceByElement(Element) {
       schedules.forEach(element => {
         if (element.schedule == Element) {
@@ -475,6 +481,76 @@
         document.getElementById("add").disabled = true;
       }
     }
+
+    // saveファンクションでスケジュールのデータを連想配列でまとめる//
+    function save() { 
+      var scheduleArray = [];
+      let result = document.getElementById("results");
+      result.innerHTML = "";
+      schedules.forEach(function (schedule) {
+        var scheduleData = {
+          "start":convertLeftToTime(schedule.startleft),
+          "end":convertLeftToTime(schedule.startleft+schedule.startWidth),
+          "length":convertMinutesToTime(schedule.startWidth)
+        };
+        scheduleArray.push(scheduleData);
+      });
+      //scheduleArrayをstartの時間を基準に並べ替える
+      scheduleArray.sort(function (a, b) {
+        let aTime = convertTimeToMinutes(a.start);
+        let bTime = convertTimeToMinutes(b.start);
+        if (aTime < bTime) return -1;
+        if (aTime > bTime) return 1;
+        return 0;
+      });
+      // scheduleArrayのデータのうち、あるデータのstartが他のデータのstartとendの間または重なる場合、それぞれのデータのendを比較し、大きいほうのendをより小さいstartを持つデータのendに代入し、lengthを再計算し、より大きいstartを持つデータを削除する
+      for (let i = 0; i < scheduleArray.length; i++) {
+        for (let j = i + 1; j < scheduleArray.length; j++) {
+          if (convertTimeToMinutes(scheduleArray[i].start) <= convertTimeToMinutes(scheduleArray[j].start) && convertTimeToMinutes(scheduleArray[j].start) <= convertTimeToMinutes(scheduleArray[i].end)) {
+            if (convertTimeToMinutes(scheduleArray[i].end) < convertTimeToMinutes(scheduleArray[j].end)) {
+              scheduleArray[i].end = scheduleArray[j].end;
+              scheduleArray[i].length = convertMinutesToTime(convertTimeToMinutes(scheduleArray[i].end) - convertTimeToMinutes(scheduleArray[i].start));
+            }
+            scheduleArray.splice(j, 1);
+            j--;
+          }
+        }
+      }
+
+      // scheduleArrayのデータをdiv id="results"の子要素にまとめる
+      scheduleArray.forEach(function (schedule) {
+        let div = document.createElement("div");
+        // div.innerHTML = "開始時間："+ schedule.start + "<br>終了時間：" + schedule.end +"<br>長さ："+ schedule.length;
+        div.innerHTML = "開始時間："+ schedule.start + "<hr>終了時間：" + schedule.end +"<hr>";
+        result.appendChild(div);
+      });
+
+      // scheduleArrayの全データのlengthを合計する
+      let sum = 0;
+      scheduleArray.forEach(function (schedule) {
+        sum += convertTimeToMinutes(schedule.length);
+      });
+      // scheduleArrayの全データのうち、最小のstartと最大のendを取得する
+      let minStart = "24:00";
+      let maxEnd = "00:00";
+      scheduleArray.forEach(function (schedule) {
+        if (convertTimeToMinutes(schedule.start) < convertTimeToMinutes(minStart)) {
+          minStart = schedule.start;
+        }
+        if (convertTimeToMinutes(schedule.end) > convertTimeToMinutes(maxEnd)) {
+          maxEnd = schedule.end;
+        }
+      });
+      //div id="totalTime"に出勤時間、退勤時間、勤務時間、休憩時間を表示する
+      let total = document.getElementById("totalTime");
+      total.innerHTML = "出勤時間："+ minStart + "<br>退勤時間：" + maxEnd + "<br>勤務時間：" + convertMinutesToTime(sum) + "<br>休憩時間：" + convertMinutesToTime(convertTimeToMinutes(maxEnd) - convertTimeToMinutes(minStart) - sum);
+      // console.log("出勤時間"+minStart);
+      // console.log("退勤時間"+maxEnd);
+      // console.log("勤務時間"+convertMinutesToTime(sum));
+      // console.log("休憩時間"+convertMinutesToTime(convertTimeToMinutes(maxEnd) - convertTimeToMinutes(minStart) - sum));
+    }
+
+
 
     // function focusBack() {
     //   if (schedules.length > 0) {
