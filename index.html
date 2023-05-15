@@ -351,10 +351,6 @@
         if (isTime(value)) {
           let valueToParam = convertTimeToMinutes(value);
           const newWidth = this.startleft + this.startWidth - valueToParam - 50;
-          // console.log("startleft:" + this.startleft);
-          // console.log("startWidth:" + this.startWidth);
-          // console.log("valueToParam:" + valueToParam);
-          // console.log(newWidth);
           if (newWidth > 0) {
             this.styleleft = this.startleft + this.startWidth - newWidth;
             this.schedule.style.width = `${newWidth}px`;
@@ -544,26 +540,8 @@
       //div id="totalTime"に出勤時間、退勤時間、勤務時間、休憩時間を表示する
       let total = document.getElementById("totalTime");
       total.innerHTML = "出勤時間："+ minStart + "<br>退勤時間：" + maxEnd + "<br>勤務時間：" + convertMinutesToTime(sum) + "<br>休憩時間：" + convertMinutesToTime(convertTimeToMinutes(maxEnd) - convertTimeToMinutes(minStart) - sum);
-      // console.log("出勤時間"+minStart);
-      // console.log("退勤時間"+maxEnd);
-      // console.log("勤務時間"+convertMinutesToTime(sum));
-      // console.log("休憩時間"+convertMinutesToTime(convertTimeToMinutes(maxEnd) - convertTimeToMinutes(minStart) - sum));
+
     }
-
-
-
-    // function focusBack() {
-    //   if (schedules.length > 0) {
-    //     let indexNum = schedules.indexOf(selectedClassInstance);
-    //     if (indexNum === 0) {
-    //       indexNum = schedules.length - 1;
-    //     } else {
-    //       indexNum -= 1;
-    //     }
-    //     selectedClassInstance = schedules[indexNum];
-    //     highlightElement(schedules[indexNum].schedule);
-    //   }
-    // }
 
     // function deleteMethod(index){
     //   schedules.splice(index,1);
