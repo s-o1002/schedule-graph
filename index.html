@@ -8,8 +8,6 @@
     body {
       margin: 0;
       padding: 0;
-      /* ↓操作しづらい部分があるため追加してる */
-      user-select: none;
     }
 
     .schedule {
@@ -22,6 +20,7 @@
     }
 
     .ruler {
+      position: relative;
       top: 0;
       width: 1440px;
       height: 50px;
@@ -58,497 +57,498 @@
       background-color: yellow;
     }
 
-    body {
+    #wrapper {
       margin-left: 50px;
+      user-select: none;
     }
 
-    #selectedParam,fieldset {
+    #selectedParam,
+    fieldset {
       width: 25%;
     }
   </style>
 </head>
 
 <body>
-  <div class="ruler">
-    <div class="ruler-mark" style="left: 0;"></div>
-    <div class="ruler-label" style="left: 25px;">0:00</div>
-    <div class="ruler-mark" style="left: 50px;"></div>
-    <div class="ruler-label" style="left: 85px;">1:00</div>
-    <div class="ruler-mark" style="left: 110px;"></div>
-    <div class="ruler-label" style="left: 145px;">2:00</div>
-    <div class="ruler-mark" style="left: 170px;"></div>
-    <div class="ruler-label" style="left: 205px;">3:00</div>
-    <div class="ruler-mark" style="left: 230px;"></div>
-    <div class="ruler-label" style="left: 265px;">4:00</div>
-    <div class="ruler-mark" style="left: 290px;"></div>
-    <div class="ruler-label" style="left: 325px;">5:00</div>
-    <div class="ruler-mark" style="left: 350px;"></div>
-    <div class="ruler-label" style="left: 385px;">6:00</div>
-    <div class="ruler-mark" style="left: 410px;"></div>
-    <div class="ruler-label" style="left: 445px;">7:00</div>
-    <div class="ruler-mark" style="left: 470px;"></div>
-    <div class="ruler-label" style="left: 505px;">8:00</div>
-    <div class="ruler-mark" style="left: 530px;"></div>
-    <div class="ruler-label" style="left: 565px;">9:00</div>
-    <div class="ruler-mark" style="left: 590px;"></div>
-    <div class="ruler-label" style="left: 625px;">10:00</div>
-    <div class="ruler-mark" style="left: 650px;"></div>
-    <div class="ruler-label" style="left: 685px;">11:00</div>
-    <div class="ruler-mark" style="left: 710px;"></div>
-    <div class="ruler-label" style="left: 745px;">12:00</div>
-    <div class="ruler-mark" style="left: 770px;"></div>
-    <div class="ruler-label" style="left: 805px;">13:00</div>
-    <div class="ruler-mark" style="left: 830px;"></div>
-    <div class="ruler-label" style="left: 865px;">14:00</div>
-    <div class="ruler-mark" style="left: 890px;"></div>
-    <div class="ruler-label" style="left: 925px;">15:00</div>
-    <div class="ruler-mark" style="left: 950px;"></div>
-    <div class="ruler-label" style="left: 985px;">16:00</div>
-    <div class="ruler-mark" style="left: 1010px;"></div>
-    <div class="ruler-label" style="left: 1045px;">17:00</div>
-    <div class="ruler-mark" style="left: 1070px;"></div>
-    <div class="ruler-label" style="left: 1105px;">18:00</div>
-    <div class="ruler-mark" style="left: 1130px;"></div>
-    <div class="ruler-label" style="left: 1165px;">19:00</div>
-    <div class="ruler-mark" style="left: 1190px;"></div>
-    <div class="ruler-label" style="left: 1225px;">20:00</div>
-    <div class="ruler-mark" style="left: 1250px;"></div>
-    <div class="ruler-label" style="left: 1285px;">21:00</div>
-    <div class="ruler-mark" style="left: 1310px;"></div>
-    <div class="ruler-label" style="left: 1345px;">22:00</div>
-    <div class="ruler-mark" style="left: 1370px;"></div>
-    <div class="ruler-label" style="left: 1405px;">23:00</div>
-    <div class="ruler-mark" style="left: 1430px;"></div>
-    <div class="ruler-label" style="left: 1465px;">24:00</div>
-    <div class="ruler-mark" style="left: 1490px;"></div>
-    <div id="scheduleBox">
+  <div id="wrapper">
+    <div class="ruler">
+      <div class="ruler-label" style="left: -25px;">0:00</div>
+      <div class="ruler-label" style="left: 35px;">1:00</div>
+      <div class="ruler-label" style="left: 95px;">2:00</div>
+      <div class="ruler-label" style="left: 155px;">3:00</div>
+      <div class="ruler-label" style="left: 215px;">4:00</div>
+      <div class="ruler-label" style="left: 275px;">5:00</div>
+      <div class="ruler-label" style="left: 335px;">6:00</div>
+      <div class="ruler-label" style="left: 395px;">7:00</div>
+      <div class="ruler-label" style="left: 455px;">8:00</div>
+      <div class="ruler-label" style="left: 515px;">9:00</div>
+      <div class="ruler-label" style="left: 575px;">10:00</div>
+      <div class="ruler-label" style="left: 635px;">11:00</div>
+      <div class="ruler-label" style="left: 695px;">12:00</div>
+      <div class="ruler-label" style="left: 755px;">13:00</div>
+      <div class="ruler-label" style="left: 815px;">14:00</div>
+      <div class="ruler-label" style="left: 875px;">15:00</div>
+      <div class="ruler-label" style="left: 935px;">16:00</div>
+      <div class="ruler-label" style="left: 995px;">17:00</div>
+      <div class="ruler-label" style="left: 1055px;">18:00</div>
+      <div class="ruler-label" style="left: 1115px;">19:00</div>
+      <div class="ruler-label" style="left: 1175px;">20:00</div>
+      <div class="ruler-label" style="left: 1235px;">21:00</div>
+      <div class="ruler-label" style="left: 1295px;">22:00</div>
+      <div class="ruler-label" style="left: 1355px;">23:00</div>
+      <div class="ruler-label" style="left: 1415px;">24:00</div>
+
+      <div class="ruler-mark" style="left: 0;"></div>
+      <div class="ruler-mark" style="left: 60px;"></div>
+      <div class="ruler-mark" style="left: 120px;"></div>
+      <div class="ruler-mark" style="left: 180px;"></div>
+      <div class="ruler-mark" style="left: 240px;"></div>
+      <div class="ruler-mark" style="left: 300px;"></div>
+      <div class="ruler-mark" style="left: 360px;"></div>
+      <div class="ruler-mark" style="left: 420px;"></div>
+      <div class="ruler-mark" style="left: 480px;"></div>
+      <div class="ruler-mark" style="left: 540px;"></div>
+      <div class="ruler-mark" style="left: 600px;"></div>
+      <div class="ruler-mark" style="left: 660px;"></div>
+      <div class="ruler-mark" style="left: 720px;"></div>
+      <div class="ruler-mark" style="left: 780px;"></div>
+      <div class="ruler-mark" style="left: 840px;"></div>
+      <div class="ruler-mark" style="left: 900px;"></div>
+      <div class="ruler-mark" style="left: 960px;"></div>
+      <div class="ruler-mark" style="left: 1020px;"></div>
+      <div class="ruler-mark" style="left: 1080px;"></div>
+      <div class="ruler-mark" style="left: 1140px;"></div>
+      <div class="ruler-mark" style="left: 1200px;"></div>
+      <div class="ruler-mark" style="left: 1260px;"></div>
+      <div class="ruler-mark" style="left: 1320px;"></div>
+      <div class="ruler-mark" style="left: 1380px;"></div>
+      <div class="ruler-mark" style="left: 1440px;"></div>
+
+      <div id="scheduleBox">
+      </div>
     </div>
-  </div>
-  <div id="param">
-    <fieldset id="selectedParam">
-      <legend>選択パラメータ</legend>
-      開始：<input type="time" id="start" name="example" value="" readonly><br><br>
-      終了：<input type="time" id="end" name="example" value="" readonly>
-      <p id="total">長さ:</p>
+    <div id="param">
+      <fieldset id="selectedParam">
+        <legend>選択パラメータ</legend>
+        開始：<input type="time" id="start" name="example" value="" readonly><br><br>
+        終了：<input type="time" id="end" name="example" value="" readonly>
+        <p id="total">長さ:</p>
+      </fieldset>
+
+
+      最小単位(分)：<select id="select">
+        <option value="1">1</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15" selected>15</option>
+        <option value="30">30</option>
+        <option value="60">60</option>
+      </select>
+
+      <br>
+      <br>
+
+      <button id="add">Add</button>
+    </div>
+
+    <fieldset>
+      <legend>合計時間</legend>
+      <div id="totalTime">
+        出勤時間：<br>
+        退勤時間：<br>
+        勤務時間：<br>
+        休憩時間：
+      </div>
     </fieldset>
 
-
-    最小単位(分)：<select id="select">
-      <option value="1">1</option>
-      <option value="5">5</option>
-      <option value="10">10</option>
-      <option value="15" selected>15</option>
-      <option value="30">30</option>
-      <option value="60">60</option>
-    </select>
-
     <br>
-    <br>
+    <button id="saveButton">save</button>
+    <fieldset>
+      <legend>打刻</legend>
+      <div id="results">
+      </div>
+    </fieldset>
+    <script>
+      const schedules = [];
+      let newId = schedules.length;
+      let selectedElement = null;
+      let selectedClassInstance = null;
+      let minWidth = 15;
+      const limitScheduleNum = 10;
+      const gapLeft = 0;
+      const maxLeft = 1440;
 
-    <button id="add">Add</button>
-  </div>
-
-  <fieldset>
-    <legend>合計時間</legend>
-    <div id="totalTime">
-      出勤時間：<br>
-      退勤時間：<br>
-      勤務時間：<br>
-      休憩時間：
-    </div>
-  </fieldset>
-
-  <br>
-  <button id="saveButton">save</button>
-  <fieldset>
-    <legend>打刻</legend>
-    <div id="results">
-    </div>
-  </fieldset>
-  <script>
-    const schedules = [];
-    let newId = schedules.length;
-    let selectedElement = null;
-    let selectedClassInstance = null;
-    let minWidth = 15;
-    const limitScheduleNum = 10;
-
-    const select = document.getElementById("select");
-    select.addEventListener("change", function () {
-      minWidth = Number(select.value);
-      this.blur();
-    });
-
-    function highlightElement(element) {
-      if (selectedElement && selectedElement != element) {
-        selectedElement.classList.remove("highlight");
-      }
-      if (selectedElement != element) {
-        selectedElement = element;
-        selectedElement.classList.add("highlight");
-      }
-      findInstanceByElement(element);
-    }
-
-    window.addEventListener("load", function () {
-      var start = document.getElementById("start");
-      var end = document.getElementById("end");
-
-      start.addEventListener("input", function (event) {
-        selectedClassInstance.setStartTime(event.target.value);
+      const select = document.getElementById("select");
+      select.addEventListener("change", function () {
+        minWidth = Number(select.value);
+        this.blur();
       });
 
-      end.addEventListener("input", function (event) {
-        selectedClassInstance.setEndTime(event.target.value);
-      });
-
-      var addButton = document.getElementById("add");
-      addButton.addEventListener("click", function (event) {
-        addEvent();
-      });
-
-      var saveButton = document.getElementById("saveButton");
-      saveButton.addEventListener("click", function (event) {
-        save();
-      });
-
-      document.addEventListener("keydown", function (event) {
-        const key = event.key;
-        if (event.shiftKey && event.key === "ArrowLeft" && selectedClassInstance) {
-          selectedClassInstance.shrinkBack();
-        } else if (event.shiftKey && event.key === "ArrowRight" && selectedClassInstance) {
-          selectedClassInstance.extendBack();
-        } else if (event.key === "n") {
-          addEvent();
-        } else if (key === "ArrowLeft" && selectedClassInstance) {
-          selectedClassInstance.LeftArrow();
-        } else if (key === "ArrowRight" && selectedClassInstance) {
-          selectedClassInstance.RightArrow();
-        } else if (key === 'Tab') {
-          if (selectedClassInstance && schedules.length > 1) {
-            event.preventDefault();
-            focusNext();
-          }
+      function highlightElement(element) {
+        if (selectedElement && selectedElement != element) {
+          selectedElement.classList.remove("highlight");
         }
-      });
-    });
+        if (selectedElement != element) {
+          selectedElement = element;
+          selectedElement.classList.add("highlight");
+        }
+        findInstanceByElement(element);
+      }
 
-    class scheduleClass {
-      constructor(scheduleId) {
-        // コンストラクター
-        this.schedule = document.getElementById(scheduleId);
+      window.addEventListener("load", function () {
+        var start = document.getElementById("start");
+        var end = document.getElementById("end");
 
-        this.schedule.addEventListener('mousemove', e => {
-          this.cursorX = e.clientX;
-          this.cursorY = e.clientY;
-          this.rect = this.schedule.getBoundingClientRect();
-          this.scheduleCenterX = this.rect.left + this.rect.width / 2;
-          this.scheduleCenterY = this.rect.top + this.rect.height / 2;
+        start.addEventListener("input", function (event) {
+          selectedClassInstance.setStartTime(event.target.value);
+        });
 
-          if (this.cursorX < this.rect.left + 10 || this.cursorX > this.rect.right - 10) {
-            this.schedule.style.cursor = 'ew-resize';
-          } else if (Math.abs(this.cursorX - this.scheduleCenterX) < 10 && Math.abs(this.cursorY - this.scheduleCenterY) < 10) {
-            if (this.isDragging) {
-              this.schedule.style.cursor = 'grabbing';
-            } else {
-              this.schedule.style.cursor = 'grab';
-            }
-          } else {
-            if (this.isDragging) {
-              this.schedule.style.cursor = 'grabbing';
-            } else {
-              this.schedule.style.cursor = 'grab';
-            }
-          }
+        end.addEventListener("input", function (event) {
+          selectedClassInstance.setEndTime(event.target.value);
+        });
+
+        var addButton = document.getElementById("add");
+        addButton.addEventListener("click", function (event) {
+          addEvent();
+        });
+
+        var saveButton = document.getElementById("saveButton");
+        saveButton.addEventListener("click", function (event) {
           save();
         });
-        this.isDragging = false;
-        this.isResizingLeft = false;
-        this.isResizingRight = false;
-        this.startX = 0;
-        this.startWidth = this.schedule.clientWidth;
-        //最小単位(分)
-        // minWidth = 30;
-        this.startleft = parseInt(this.schedule.style.left);
-        this.styleleft = parseInt(this.schedule.style.left);
-        this.startP = document.getElementById("start");
-        this.endP = document.getElementById("end");
-        this.totalP = document.getElementById("total");
 
-        this.schedule.addEventListener('mousedown', (event) => {
-          if (event.button === 0) {
-            highlightElement(this.schedule);
-            this.schedule.style.cursor = 'grabbing';
-            if (event.offsetX < 10) {
-              this.isResizingLeft = true;
-            } else if (event.offsetX > this.schedule.clientWidth - 10) {
-              this.isResizingRight = true;
-            } else {
-              this.isDragging = true;
+        document.addEventListener("keydown", function (event) {
+          const key = event.key;
+          if (event.shiftKey && event.key === "ArrowLeft" && selectedClassInstance) {
+            selectedClassInstance.shrinkBack();
+          } else if (event.shiftKey && event.key === "ArrowRight" && selectedClassInstance) {
+            selectedClassInstance.extendBack();
+          } else if (event.key === "n") {
+            addEvent();
+          } else if (key === "ArrowLeft" && selectedClassInstance) {
+            selectedClassInstance.LeftArrow();
+          } else if (key === "ArrowRight" && selectedClassInstance) {
+            selectedClassInstance.RightArrow();
+          } else if (key === 'Tab') {
+            if (selectedClassInstance && schedules.length > 1) {
+              event.preventDefault();
+              focusNext();
             }
-            this.startX = event.pageX;
-            this.startleft = parseInt(this.schedule.style.left);
-            this.styleleft = parseInt(this.schedule.style.left);
-            this.startWidth = this.schedule.clientWidth;
-            this.showParam(this.startWidth);
           }
         });
-        this.schedule.addEventListener('click', (event) => {
-          if (event.button === 0) {
-            this.schedule.style.cursor = 'grab';
-          }
-        });
+      });
 
-        document.addEventListener('mousemove', (event) => {
-          if (this.isResizingLeft) {
-            const newWidth = this.startWidth + this.startX - event.pageX;
-            this.styleleft = this.startleft + this.startWidth - newWidth;
-            // console.log(this.styleleft);
-            if (newWidth >= minWidth && event.pageX > 0 && this.styleleft > 50 && newWidth % minWidth == 0) {
+      class scheduleClass {
+        constructor(scheduleId) {
+          // コンストラクター
+          this.schedule = document.getElementById(scheduleId);
+
+          this.schedule.addEventListener('mousemove', e => {
+            this.cursorX = e.clientX;
+            this.cursorY = e.clientY;
+            this.rect = this.schedule.getBoundingClientRect();
+            this.scheduleCenterX = this.rect.left + this.rect.width / 2;
+            this.scheduleCenterY = this.rect.top + this.rect.height / 2;
+
+            if (this.cursorX < this.rect.left + 10 || this.cursorX > this.rect.right - 10) {
+              this.schedule.style.cursor = 'ew-resize';
+            } else if (Math.abs(this.cursorX - this.scheduleCenterX) < 10 && Math.abs(this.cursorY - this.scheduleCenterY) < 10) {
+              if (this.isDragging) {
+                this.schedule.style.cursor = 'grabbing';
+              } else {
+                this.schedule.style.cursor = 'grab';
+              }
+            } else {
+              if (this.isDragging) {
+                this.schedule.style.cursor = 'grabbing';
+              } else {
+                this.schedule.style.cursor = 'grab';
+              }
+            }
+            save();
+          });
+          this.isDragging = false;
+          this.isResizingLeft = false;
+          this.isResizingRight = false;
+          this.startX = 0;
+          this.startWidth = this.schedule.clientWidth;
+          //最小単位(分)
+          // minWidth = 30;
+          this.startleft = parseInt(this.schedule.style.left);
+          this.styleleft = parseInt(this.schedule.style.left);
+          this.startP = document.getElementById("start");
+          this.endP = document.getElementById("end");
+          this.totalP = document.getElementById("total");
+
+          this.schedule.addEventListener('mousedown', (event) => {
+            if (event.button === 0) {
+              highlightElement(this.schedule);
+              this.schedule.style.cursor = 'grabbing';
+              if (event.offsetX < 10) {
+                this.isResizingLeft = true;
+              } else if (event.offsetX > this.schedule.clientWidth - 10) {
+                this.isResizingRight = true;
+              } else {
+                this.isDragging = true;
+              }
+              this.startX = event.pageX;
+              this.startleft = parseInt(this.schedule.style.left);
+              this.styleleft = parseInt(this.schedule.style.left);
+              this.startWidth = this.schedule.clientWidth;
+              this.showParam(this.startWidth);
+            }
+          });
+          this.schedule.addEventListener('click', (event) => {
+            if (event.button === 0) {
+              this.schedule.style.cursor = 'grab';
+            }
+          });
+
+          document.addEventListener('mousemove', (event) => {
+            if (this.isResizingLeft) {
+              const newWidth = this.startWidth + this.startX - event.pageX;
+              this.styleleft = this.startleft + this.startWidth - newWidth;
+              if (newWidth >= minWidth && event.pageX > 0 && this.styleleft > gapLeft && newWidth % minWidth == 0) {
+                this.schedule.style.width = `${newWidth}px`;
+                this.schedule.style.left = `${this.styleleft}px`;
+                this.showParam(newWidth);
+              }
+            } else if (this.isResizingRight) {
+              const newWidth = this.startWidth + event.pageX - this.startX;
+              if (newWidth >= minWidth && event.pageX < window.innerWidth && this.startleft + newWidth < maxLeft && newWidth % minWidth == 0) {
+                this.schedule.style.width = `${newWidth}px`;
+                this.showParam(newWidth);
+              }
+            } else if (this.isDragging) {
+              const newLeft = this.startleft + event.pageX - this.startX;
+              if (newLeft >= gapLeft && newLeft + this.startWidth < maxLeft && (newLeft - gapLeft) % minWidth == 0) {
+                this.schedule.style.left = `${newLeft}px`;
+                this.showParam(this.startWidth);
+              }
+            }
+          });
+
+          document.addEventListener('mouseup', () => {
+            this.isDragging = false;
+            this.isResizingLeft = false;
+            this.isResizingRight = false;
+            this.startleft = parseInt(this.schedule.style.left);
+            this.startWidth = this.schedule.clientWidth;
+          });
+          save();
+        }
+
+        showParam(width) {
+          let starttime = parseInt(this.schedule.style.left) - gapLeft;
+          this.startP.value = Math.floor(starttime / 60).toString().padStart(2, '0') + ":" + (starttime % 60).toString().padStart(2, '0');
+          this.startP.readOnly = false;
+          starttime = starttime + width;
+          this.endP.value = Math.floor(starttime / 60).toString().padStart(2, '0') + ":" + (starttime % 60).toString().padStart(2, '0');
+          this.endP.readOnly = false;
+          width = parseInt(width);
+          this.totalP.textContent = "長さ：" + Math.floor(width / 60) + ":" + (width % 60).toString().padStart(2, '0');
+          save();
+        }
+
+        setStartTime(value) {
+          if (isTime(value)) {
+            let valueToParam = convertTimeToMinutes(value);
+            const newWidth = this.startleft + this.startWidth - valueToParam - gapLeft;
+            if (newWidth > 0) {
+              this.styleleft = this.startleft + this.startWidth - newWidth;
               this.schedule.style.width = `${newWidth}px`;
               this.schedule.style.left = `${this.styleleft}px`;
               this.showParam(newWidth);
             }
-          } else if (this.isResizingRight) {
-            const newWidth = this.startWidth + event.pageX - this.startX;
-            if (newWidth >= minWidth && event.pageX < window.innerWidth && this.startleft + newWidth < 1490 && newWidth % minWidth == 0) {
+          }
+        }
+
+        setEndTime(value) {
+          if (isTime(value)) {
+            let valueToParam = convertTimeToMinutes(value);
+            const newWidth = valueToParam - this.startleft + gapLeft;
+            // console.log(newWidth);
+            if (newWidth >= minWidth && this.startleft + newWidth < maxLeft) {
               this.schedule.style.width = `${newWidth}px`;
               this.showParam(newWidth);
             }
-            // console.log("right");
-          } else if (this.isDragging) {
-            const newLeft = this.startleft + event.pageX - this.startX;
-            if (newLeft >= 50 && newLeft + this.startWidth < 1490 && (newLeft - 50) % minWidth == 0) {
-              this.schedule.style.left = `${newLeft}px`;
-              this.showParam(this.startWidth);
-            }
-          }
-        });
-
-        document.addEventListener('mouseup', () => {
-          this.isDragging = false;
-          this.isResizingLeft = false;
-          this.isResizingRight = false;
-          this.startleft = parseInt(this.schedule.style.left);
-          this.startWidth = this.schedule.clientWidth;
-        });
-        save();
-      }
-
-      showParam(width) {
-        let starttime = parseInt(this.schedule.style.left) - 50;
-        this.startP.value = Math.floor(starttime / 60).toString().padStart(2, '0') + ":" + (starttime % 60).toString().padStart(2, '0');
-        this.startP.readOnly = false;
-        starttime = starttime + width;
-        this.endP.value = Math.floor(starttime / 60).toString().padStart(2, '0') + ":" + (starttime % 60).toString().padStart(2, '0');
-        this.endP.readOnly = false;
-        width = parseInt(width);
-        this.totalP.textContent = "長さ：" + Math.floor(width / 60) + ":" + (width % 60).toString().padStart(2, '0');
-        save();
-      }
-
-      setStartTime(value) {
-        if (isTime(value)) {
-          let valueToParam = convertTimeToMinutes(value);
-          const newWidth = this.startleft + this.startWidth - valueToParam - 50;
-          if (newWidth > 0) {
-            this.styleleft = this.startleft + this.startWidth - newWidth;
-            this.schedule.style.width = `${newWidth}px`;
-            this.schedule.style.left = `${this.styleleft}px`;
-            this.showParam(newWidth);
           }
         }
-      }
 
-      setEndTime(value) {
-        if (isTime(value)) {
-          let valueToParam = convertTimeToMinutes(value);
-          const newWidth = valueToParam - this.startleft + 50;
-          // console.log(newWidth);
-          if (newWidth >= minWidth && this.startleft + newWidth < 1490) {
-            this.schedule.style.width = `${newWidth}px`;
-            this.showParam(newWidth);
+        RightArrow() {
+          if (this.startleft + this.startWidth + minWidth < maxLeft) {
+            this.startleft += minWidth;
+            this.schedule.style.left = this.startleft + "px";
           }
-        }
-      }
-
-      RightArrow() {
-        if (this.startleft + this.startWidth + minWidth < 1490) {
-          this.startleft += minWidth;
-          this.schedule.style.left = this.startleft + "px";
-        }
-        this.showParam(this.startWidth);
-      }
-
-      LeftArrow() {
-        if (this.startleft - minWidth >= 50) {
-          this.startleft -= minWidth;
-          this.schedule.style.left = this.startleft + "px";
-        }
-        this.showParam(this.startWidth);
-      }
-
-      shrinkBack() {
-        if (this.startWidth - minWidth > 0) {
-          this.schedule.style.width = `${this.startWidth - minWidth}px`;
-          this.startWidth -= minWidth;
           this.showParam(this.startWidth);
         }
-      }
 
-      extendBack() {
-        if (this.startleft + this.startWidth + minWidth < 1490) {
-          this.schedule.style.width = `${this.startWidth + minWidth}px`;
-          this.startWidth += minWidth;
+        LeftArrow() {
+          if (this.startleft - minWidth >= gapLeft) {
+            this.startleft -= minWidth;
+            this.schedule.style.left = this.startleft + "px";
+          }
           this.showParam(this.startWidth);
         }
-      }
 
-    }
-
-    function isTime(str) {
-      return str.match(/^([01]?[0-9]|2[0-3]):([0-5][0-9])$/) !== null;
-    };
-
-    function convertTimeToMinutes(timeString) {
-      const [hours, minutes] = timeString.split(":").map(Number);
-      return hours * 60 + minutes;
-    }
-
-    function convertLeftToTime(minutes) {
-      minutes -= 50;
-      const hours = Math.floor(minutes / 60);
-      const min = minutes % 60;
-      return `${String(hours).padStart(2, '0')}:${String(min).padStart(2, '0')}`;
-    }
-
-    function convertMinutesToTime(minutes){
-      const hours = Math.floor(minutes / 60);
-      const min = minutes % 60;
-      return `${String(hours).padStart(2, '0')}:${String(min).padStart(2, '0')}`;
-    }
-
-    function findInstanceByElement(Element) {
-      schedules.forEach(element => {
-        if (element.schedule == Element) {
-          selectedClassInstance = element;
-        }
-      });
-    }
-
-    function focusNext() {
-      if (schedules.length > 0) {
-        let indexNum = schedules.indexOf(selectedClassInstance);
-        if (indexNum + 1 === schedules.length) {
-          indexNum = 0;
-        } else {
-          indexNum += 1;
-        }
-        selectedClassInstance = schedules[indexNum];
-        highlightElement(schedules[indexNum].schedule);
-        schedules[indexNum].showParam(schedules[indexNum].startWidth);
-      }
-    }
-
-    function addEvent() {
-      if (limitScheduleNum > schedules.length) {
-        newId += 1;
-
-        let newSchedule = document.createElement("div");
-        newSchedule.setAttribute("id", newId);
-        newSchedule.classList.add("schedule");
-
-        // スタイルを設定
-        newSchedule.style.width = "60px";
-        newSchedule.style.left = "110px";
-
-        // 追加する schedule 要素を scheduleBox に追加
-        const scheduleBox = document.getElementById("scheduleBox");
-        scheduleBox.appendChild(newSchedule);
-
-        schedules.push(new scheduleClass(newId));
-
-        selectedClassInstance = schedules[schedules.length - 1];
-        highlightElement(schedules[schedules.length - 1].schedule);
-        schedules[schedules.length - 1].showParam(schedules[schedules.length - 1].startWidth);
-      }
-
-      if (limitScheduleNum <= schedules.length) {
-        document.getElementById("add").disabled = true;
-      }
-    }
-
-    // saveファンクションでスケジュールのデータを連想配列でまとめる//
-    function save() { 
-      var scheduleArray = [];
-      let result = document.getElementById("results");
-      result.innerHTML = "";
-      schedules.forEach(function (schedule) {
-        var scheduleData = {
-          "start":convertLeftToTime(schedule.startleft),
-          "end":convertLeftToTime(schedule.startleft+schedule.startWidth),
-          "length":convertMinutesToTime(schedule.startWidth)
-        };
-        scheduleArray.push(scheduleData);
-      });
-      //scheduleArrayをstartの時間を基準に並べ替える
-      scheduleArray.sort(function (a, b) {
-        let aTime = convertTimeToMinutes(a.start);
-        let bTime = convertTimeToMinutes(b.start);
-        if (aTime < bTime) return -1;
-        if (aTime > bTime) return 1;
-        return 0;
-      });
-      // scheduleArrayのデータのうち、あるデータのstartが他のデータのstartとendの間または重なる場合、それぞれのデータのendを比較し、大きいほうのendをより小さいstartを持つデータのendに代入し、lengthを再計算し、より大きいstartを持つデータを削除する
-      for (let i = 0; i < scheduleArray.length; i++) {
-        for (let j = i + 1; j < scheduleArray.length; j++) {
-          if (convertTimeToMinutes(scheduleArray[i].start) <= convertTimeToMinutes(scheduleArray[j].start) && convertTimeToMinutes(scheduleArray[j].start) <= convertTimeToMinutes(scheduleArray[i].end)) {
-            if (convertTimeToMinutes(scheduleArray[i].end) < convertTimeToMinutes(scheduleArray[j].end)) {
-              scheduleArray[i].end = scheduleArray[j].end;
-              scheduleArray[i].length = convertMinutesToTime(convertTimeToMinutes(scheduleArray[i].end) - convertTimeToMinutes(scheduleArray[i].start));
-            }
-            scheduleArray.splice(j, 1);
-            j--;
+        shrinkBack() {
+          if (this.startWidth - minWidth > 0) {
+            this.schedule.style.width = `${this.startWidth - minWidth}px`;
+            this.startWidth -= minWidth;
+            this.showParam(this.startWidth);
           }
         }
+
+        extendBack() {
+          if (this.startleft + this.startWidth + minWidth < maxLeft) {
+            this.schedule.style.width = `${this.startWidth + minWidth}px`;
+            this.startWidth += minWidth;
+            this.showParam(this.startWidth);
+          }
+        }
+
       }
 
-      // scheduleArrayのデータをdiv id="results"の子要素にまとめる
-      scheduleArray.forEach(function (schedule) {
-        let div = document.createElement("div");
-        // div.innerHTML = "開始時間："+ schedule.start + "<br>終了時間：" + schedule.end +"<br>長さ："+ schedule.length;
-        div.innerHTML = "開始時間："+ schedule.start + "<hr>終了時間：" + schedule.end +"<hr>";
-        result.appendChild(div);
-      });
+      function isTime(str) {
+        return str.match(/^([01]?[0-9]|2[0-3]):([0-5][0-9])$/) !== null;
+      };
 
-      // scheduleArrayの全データのlengthを合計する
-      let sum = 0;
-      scheduleArray.forEach(function (schedule) {
-        sum += convertTimeToMinutes(schedule.length);
-      });
-      // scheduleArrayの全データのうち、最小のstartと最大のendを取得する
-      let minStart = "24:00";
-      let maxEnd = "00:00";
-      scheduleArray.forEach(function (schedule) {
-        if (convertTimeToMinutes(schedule.start) < convertTimeToMinutes(minStart)) {
-          minStart = schedule.start;
+      function convertTimeToMinutes(timeString) {
+        const [hours, minutes] = timeString.split(":").map(Number);
+        return hours * 60 + minutes;
+      }
+
+      function convertLeftToTime(minutes) {
+        minutes -= gapLeft;
+        const hours = Math.floor(minutes / 60);
+        const min = minutes % 60;
+        return `${String(hours).padStart(2, '0')}:${String(min).padStart(2, '0')}`;
+      }
+
+      function convertMinutesToTime(minutes) {
+        const hours = Math.floor(minutes / 60);
+        const min = minutes % 60;
+        return `${String(hours).padStart(2, '0')}:${String(min).padStart(2, '0')}`;
+      }
+
+      function findInstanceByElement(Element) {
+        schedules.forEach(element => {
+          if (element.schedule == Element) {
+            selectedClassInstance = element;
+          }
+        });
+      }
+
+      function focusNext() {
+        if (schedules.length > 0) {
+          let indexNum = schedules.indexOf(selectedClassInstance);
+          if (indexNum + 1 === schedules.length) {
+            indexNum = 0;
+          } else {
+            indexNum += 1;
+          }
+          selectedClassInstance = schedules[indexNum];
+          highlightElement(schedules[indexNum].schedule);
+          schedules[indexNum].showParam(schedules[indexNum].startWidth);
         }
-        if (convertTimeToMinutes(schedule.end) > convertTimeToMinutes(maxEnd)) {
-          maxEnd = schedule.end;
+      }
+
+      function addEvent() {
+        if (limitScheduleNum > schedules.length) {
+          newId += 1;
+
+          let newSchedule = document.createElement("div");
+          newSchedule.setAttribute("id", newId);
+          newSchedule.classList.add("schedule");
+
+          // スタイルを設定
+          newSchedule.style.width = "60px";
+          newSchedule.style.left = "60px";
+
+          // 追加する schedule 要素を scheduleBox に追加
+          const scheduleBox = document.getElementById("scheduleBox");
+          scheduleBox.appendChild(newSchedule);
+
+          schedules.push(new scheduleClass(newId));
+
+          selectedClassInstance = schedules[schedules.length - 1];
+          highlightElement(schedules[schedules.length - 1].schedule);
+          schedules[schedules.length - 1].showParam(schedules[schedules.length - 1].startWidth);
         }
-      });
-      //div id="totalTime"に出勤時間、退勤時間、勤務時間、休憩時間を表示する
-      let total = document.getElementById("totalTime");
-      total.innerHTML = "出勤時間："+ minStart + "<br>退勤時間：" + maxEnd + "<br>勤務時間：" + convertMinutesToTime(sum) + "<br>休憩時間：" + convertMinutesToTime(convertTimeToMinutes(maxEnd) - convertTimeToMinutes(minStart) - sum);
 
-    }
+        if (limitScheduleNum <= schedules.length) {
+          document.getElementById("add").disabled = true;
+        }
+      }
 
-    // function deleteMethod(index){
-    //   schedules.splice(index,1);
-    //   console.log(schedules);
-    // }
+      // saveファンクションでスケジュールのデータを連想配列でまとめる//
+      function save() {
+        var scheduleArray = [];
+        let result = document.getElementById("results");
+        result.innerHTML = "";
+        schedules.forEach(function (schedule) {
+          var scheduleData = {
+            "start": convertLeftToTime(schedule.startleft),
+            "end": convertLeftToTime(schedule.startleft + schedule.startWidth),
+            "length": convertMinutesToTime(schedule.startWidth)
+          };
+          scheduleArray.push(scheduleData);
+        });
+        //scheduleArrayをstartの時間を基準に並べ替える
+        scheduleArray.sort(function (a, b) {
+          let aTime = convertTimeToMinutes(a.start);
+          let bTime = convertTimeToMinutes(b.start);
+          if (aTime < bTime) return -1;
+          if (aTime > bTime) return 1;
+          return 0;
+        });
+        // scheduleArrayのデータのうち、あるデータのstartが他のデータのstartとendの間または重なる場合、それぞれのデータのendを比較し、大きいほうのendをより小さいstartを持つデータのendに代入し、lengthを再計算し、より大きいstartを持つデータを削除する
+        for (let i = 0; i < scheduleArray.length; i++) {
+          for (let j = i + 1; j < scheduleArray.length; j++) {
+            if (convertTimeToMinutes(scheduleArray[i].start) <= convertTimeToMinutes(scheduleArray[j].start) && convertTimeToMinutes(scheduleArray[j].start) <= convertTimeToMinutes(scheduleArray[i].end)) {
+              if (convertTimeToMinutes(scheduleArray[i].end) < convertTimeToMinutes(scheduleArray[j].end)) {
+                scheduleArray[i].end = scheduleArray[j].end;
+                scheduleArray[i].length = convertMinutesToTime(convertTimeToMinutes(scheduleArray[i].end) - convertTimeToMinutes(scheduleArray[i].start));
+              }
+              scheduleArray.splice(j, 1);
+              j--;
+            }
+          }
+        }
 
-  </script>
+        // scheduleArrayのデータをdiv id="results"の子要素にまとめる
+        scheduleArray.forEach(function (schedule) {
+          let div = document.createElement("div");
+          // div.innerHTML = "開始時間："+ schedule.start + "<br>終了時間：" + schedule.end +"<br>長さ："+ schedule.length;
+          div.innerHTML = "開始時間：" + schedule.start + "<hr>終了時間：" + schedule.end + "<hr>";
+          result.appendChild(div);
+        });
+
+        // scheduleArrayの全データのlengthを合計する
+        let sum = 0;
+        scheduleArray.forEach(function (schedule) {
+          sum += convertTimeToMinutes(schedule.length);
+        });
+        // scheduleArrayの全データのうち、最小のstartと最大のendを取得する
+        let minStart = "24:00";
+        let maxEnd = "00:00";
+        if (scheduleArray.length != 0) {
+          scheduleArray.forEach(function (schedule) {
+            if (convertTimeToMinutes(schedule.start) < convertTimeToMinutes(minStart)) {
+              minStart = schedule.start;
+            }
+            if (convertTimeToMinutes(schedule.end) > convertTimeToMinutes(maxEnd)) {
+              maxEnd = schedule.end;
+            }
+          });
+          //div id="totalTime"に出勤時間、退勤時間、勤務時間、休憩時間を表示する
+          let total = document.getElementById("totalTime");
+          total.innerHTML = "出勤時間：" + minStart + "<br>退勤時間：" + maxEnd + "<br>勤務時間：" + convertMinutesToTime(sum) + "<br>休憩時間：" + convertMinutesToTime(convertTimeToMinutes(maxEnd) - convertTimeToMinutes(minStart) - sum);
+        }
+      }
+
+    </script>
+  </div>
 </body>
 
 </html>
